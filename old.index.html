@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rock, Paper, Scissors</title>
+</head>
+<body>  
+  <script>
+    //declare variables
+    let wins = 0;
+    let loses = 0;
+    let ties = 0;
+    const choices = ["rock", "paper", "scissors"]
+    
+    function RandomRange(min=0,max=3){
+      return Math.floor(Math.random() * (+max - +min)) + min
+    }
+	  
+    function getComputerSelection(){
+      return choices[RandomRange()];
+    }
+
+    function getPlayerSelection (){
+      let answer = window.prompt("Rock, Paper, or Scissors?");
+      return answer.toLowerCase();
+    } 
+    
+    function playRound (playerSelection=getPlayerSelection(), computerSelection=getComputerSelection()){
+      if (playerSelection === "rock") {
+        if (computerSelection === "rock"){
+          ties++;
+          return "You both chose rock.";
+        }
+        else if ( computerSelection === "paper"){
+          loses++;
+          return "You lose. Computer chose paper."
+        } 
+        else{
+          wins++;
+          return "You win. Computer chose scissors."
+        } 
+      }
+      if (playerSelection === "paper") {
+        if (computerSelection === "paper"){
+          ties++;
+          return "You both chose paper"
+        }
+        else if ( computerSelection == "scissors"){
+          loses++;
+          return "You lose. Computer chose scissors."
+        } 
+        else{
+          wins++;
+          return "You win. Computer chose rock."
+        }
+      } 
+      if (playerSelection == "scissors") {
+        if (computerSelection === "scissors"){
+          ties++;
+          return "You both chose scissors."
+        }
+        else if ( computerSelection === "rock"){
+          loses++;
+          return "You lose. Computer chose rock."
+        } 
+        else{
+          wins++;
+          return "You win. Computer chose scissors."
+        }
+      }
+    }
+     
+    function determineWinner() {
+       if (wins > loses) {
+         return "Player wins match :)"
+       }
+       if (loses > wins) {
+         return "Computer wins match :("
+       }
+       if (wins === loses) {
+         return "You tie with the computer :|"
+       }
+     }
+    
+    function playMatch(){
+      let i;
+      for (i = 0; i < 5; i++) {
+        console.log(playRound());
+      }
+      console.log(determineWinner());
+    }
+
+  playMatch();
+  </script>
+</body>
+</html>
+
